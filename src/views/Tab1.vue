@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Under Ground Stores undergroundstores.com</ion-title>
+        <ion-title>Under Ground Stores</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
