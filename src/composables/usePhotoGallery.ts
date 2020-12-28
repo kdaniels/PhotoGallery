@@ -82,7 +82,19 @@ export function usePhotoGallery() {
       }
 
       photos.value = photosInStorage;
-    }
+    };
+
+    const deletePhoto = async (photo: Photo) => {
+      // remove photo from references
+      photos.value = photos.value.filter(p => p.filepath !== photo.filepath);
+
+      // delete from the filesystem
+      const filename = photo.filepath.substr(photo.filepath.lastIndexOf('/') + 1);
+      await Filesystem.deleteFile({
+        path: filename,
+        directory: FilesystemDirectory.Data
+      });
+    };
 
     const takePhoto = async () => {
       // call the image capture and record the returned Uri
@@ -108,7 +120,8 @@ export function usePhotoGallery() {
 
     return {
       photos,
-      takePhoto
+      takePhoto,
+      deletePhoto
     };
   }
 
